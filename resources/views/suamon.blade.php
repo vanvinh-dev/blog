@@ -8,9 +8,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title></title>
+  <title>SB Admin 2 - Dashboard</title>
+
   @include('include.css')
+
+
 </head>
 
 <body id="page-top">
@@ -31,51 +35,38 @@
         <!-- Topbar -->
         @include('include.header')
         <!-- End of Topbar -->
-
+      <div style="padding:20px;background-color: white;">
         <!-- Begin Page Content -->
-        
-        <div style="padding:20px">
-            <div style="">
+        <form method="post" action="/suamon/<?php echo $subject->id; ?>" class="row">
+        @method('POST')
+                @csrf
+         <div class="form-group col-md-6">
+            <label for="exampleInputEmail1">Mã bộ môn</label>
+            <input class="form-control" type="number" placeholder="Nhập tên khoa" name="mamh" value="<?php echo $subject->mamh; ?>">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="exampleInputEmail1">Tên bộ môn</label>
+            <input class="form-control" type="text" placeholder="Nhập tên khoa" name="name" value="<?php echo $subject->name; ?>">
+          </div>
+            <div class="form-group col-md-6">
+            <label for="exampleInputEmail1">Số tín chỉ</label>
+            <input class="form-control" type="number" placeholder="Nhập tên khoa" name="tinchi" value="<?php echo $subject->tinchi; ?>">
+          </div>
+           <div class="form-group col-md-6">
+            <label for="exampleInputEmail1">Khoa</label>
+            <select  class="form-control" name="khoa">
+                        <?php foreach($khoa as $item): ?>
+                            <option <?php if($item['id']==$subject->khoa) echo 'selected'; ?> value="{{$item['id']}}">{{$item['tenkhoa']}}</option>
+                        <?php endforeach ?>
+            </select>
+           
             </div>
-            <table class="table  table table-bordered" style="    background-color: white;">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Mã giáo viên</th>
-                  <th scope="col">Tên giáo viên</th>
-                  <th scope="col">Bậc học</th>
-                  <th scope="col">Hệ số</th>
-                  <th scope="col">Phụ cấp</th>
-                  <th scope="col">Chức vụ</th>
-                  <th scope="col">Bộ môn</th>
-                   <th scope="col"></th>
-                </tr>
-              </thead>
-              <tbody>
-              <?php $stt=0; foreach($teacher as $item): $stt++?>
-                    <tr>
-                        <th scope="row">{{$stt}}</th>
-                        <td>{{$item['ma']}}</td>
-                        <td>{{$item['ten']}}</td>
-                        <td>{{$item['bachoc']}}</td>
-                        <td>{{$item['heso']}}</td>
-                        <td>{{$item['phucap']}}</td>
-                        <td>{{$item['chucvu']}}</td>
-                           <td><?php echo App\Models\subject::find($item['mabomon'])->name ?></td>
-                        <td style="text-align: center;">
-                         <a href="/suagv/{{$item['id']}}"><i class="fa fa-edit" style="margin-right:10px"></i></a>
-                         <a href="/xoagv/{{$item['id']}}"><i class="fa fa-trash-alt" style="    color: #de3d0b;"></i></a></td>
-                    </tr>
-                    <tr>
-                    
-                <?php endforeach ?>
-              </tbody>
-            </table>
+          <div class="col-md-12">
+              <button type="submit" class="btn btn-primary btn-sm ">Lưu</button>
+          </div>
+          
+        </form>
         </div>
-        
-      
-        <!-- /.container-fluid -->
-
       </div>
       <!-- End of Main Content -->
 

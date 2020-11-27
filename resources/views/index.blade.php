@@ -10,7 +10,10 @@
   <meta name="author" content="">
 
   <title></title>
+
   @include('include.css')
+
+
 </head>
 
 <body id="page-top">
@@ -33,45 +36,7 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        
-        <div style="padding:20px">
-            <div style="">
-            </div>
-            <table class="table  table table-bordered" style="    background-color: white;">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Mã giáo viên</th>
-                  <th scope="col">Tên giáo viên</th>
-                  <th scope="col">Bậc học</th>
-                  <th scope="col">Hệ số</th>
-                  <th scope="col">Phụ cấp</th>
-                  <th scope="col">Chức vụ</th>
-                  <th scope="col">Bộ môn</th>
-                   <th scope="col"></th>
-                </tr>
-              </thead>
-              <tbody>
-              <?php $stt=0; foreach($teacher as $item): $stt++?>
-                    <tr>
-                        <th scope="row">{{$stt}}</th>
-                        <td>{{$item['ma']}}</td>
-                        <td>{{$item['ten']}}</td>
-                        <td>{{$item['bachoc']}}</td>
-                        <td>{{$item['heso']}}</td>
-                        <td>{{$item['phucap']}}</td>
-                        <td>{{$item['chucvu']}}</td>
-                           <td><?php echo App\Models\subject::find($item['mabomon'])->name ?></td>
-                        <td style="text-align: center;">
-                         <a href="/suagv/{{$item['id']}}"><i class="fa fa-edit" style="margin-right:10px"></i></a>
-                         <a href="/xoagv/{{$item['id']}}"><i class="fa fa-trash-alt" style="    color: #de3d0b;"></i></a></td>
-                    </tr>
-                    <tr>
-                    
-                <?php endforeach ?>
-              </tbody>
-            </table>
-        </div>
+  
         
       
         <!-- /.container-fluid -->

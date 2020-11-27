@@ -36,35 +36,28 @@
         
         <div style="padding:20px">
             <div style="">
+              <a class="btn btn-info btn-sm" style="float:right;margin-bottom:15px" href="/themkhoa">Thêm khoa</a>
             </div>
             <table class="table  table table-bordered" style="    background-color: white;">
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Mã giáo viên</th>
-                  <th scope="col">Tên giáo viên</th>
-                  <th scope="col">Bậc học</th>
-                  <th scope="col">Hệ số</th>
-                  <th scope="col">Phụ cấp</th>
-                  <th scope="col">Chức vụ</th>
-                  <th scope="col">Bộ môn</th>
-                   <th scope="col"></th>
+                  <th scope="col">Mã khoa</th>
+                  <th scope="col">Tên khoa</th>
+                  <th scope="col">Ngày thành lập</th>
+                  <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
-              <?php $stt=0; foreach($teacher as $item): $stt++?>
+              <?php $stt=0; foreach($khoa as $item): $stt++?>
                     <tr>
                         <th scope="row">{{$stt}}</th>
-                        <td>{{$item['ma']}}</td>
-                        <td>{{$item['ten']}}</td>
-                        <td>{{$item['bachoc']}}</td>
-                        <td>{{$item['heso']}}</td>
-                        <td>{{$item['phucap']}}</td>
-                        <td>{{$item['chucvu']}}</td>
-                           <td><?php echo App\Models\subject::find($item['mabomon'])->name ?></td>
+                        <td>{{$item['makhoa']}}</td>
+                        <td>{{$item['tenkhoa']}}</td>
+                        <td>{{date("Y/m/d")}}</td>
                         <td style="text-align: center;">
-                         <a href="/suagv/{{$item['id']}}"><i class="fa fa-edit" style="margin-right:10px"></i></a>
-                         <a href="/xoagv/{{$item['id']}}"><i class="fa fa-trash-alt" style="    color: #de3d0b;"></i></a></td>
+                        <a href="/suakhoa/{{$item['id']}}"><i class="fa fa-edit" style="margin-right:10px"></i></a>
+                         <a href="/xoa/{{$item['id']}}"><i class="fa fa-trash-alt" style="    color: #de3d0b;"></i></a></td>
                     </tr>
                     <tr>
                     
