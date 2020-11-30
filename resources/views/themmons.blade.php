@@ -37,17 +37,39 @@
         <!-- End of Topbar -->
       <div style="padding:20px;background-color: white;">
         <!-- Begin Page Content -->
-        <form method="post" action="/save" class="row">
+        <form method="post" action="/savemons" class="row">
         @method('POST')
                 @csrf
-          <div class="form-group col-md-6">
-            <label for="exampleInputEmail1">Mã khoa</label>
-            <input class="form-control" type="text" placeholder="Nhập mã khoa"  name="makhoa" required>
+         <div class="form-group col-md-6">
+            <label for="exampleInputEmail1">Mã môn học</label>
+            <input class="form-control" type="text" placeholder="Nhập mã môn học" name="mamh" required >
           </div>
           <div class="form-group col-md-6">
-            <label for="exampleInputEmail1">Tên khoa</label>
-            <input class="form-control" type="text" placeholder="Nhập tên khoa"  name="tenkhoa" required>
+            <label for="exampleInputEmail1">Tên môn học</label>
+            <input class="form-control" type="text" placeholder="Nhập tên môn học" name="name" required >
           </div>
+            <div class="form-group col-md-6">
+            <label for="exampleInputEmail1">Số tín chỉ</label>
+            <input class="form-control" type="number" placeholder="Nhập số tín chỉ" name="tinchi" required >
+          </div>
+          <div class="form-group col-md-6">
+            <label for="exampleInputEmail1">Số chứng chỉ</label>
+            <input class="form-control" type="number" placeholder="Nhập chứng chỉ" name="chungchi"required >
+          </div>
+          <div class="form-group col-md-6">
+            <label for="exampleInputEmail1">Số tiết học</label>
+            <input class="form-control" type="number" placeholder="Nhập tiết học" name="sotiethoc" required >
+          </div>
+
+           <div class="form-group col-md-6">
+            <label for="exampleInputEmail1">Mã bộ môn</label>
+            <select  class="form-control" name="mabomon">
+                        <?php foreach($subject as $item): ?>
+                            <option value="{{$item['id']}}">{{$item['name']}}</option>
+                        <?php endforeach ?>
+            </select>
+           
+            </div>
           <div class="col-md-12">
               <button type="submit" class="btn btn-primary btn-sm ">Lưu</button>
           </div>

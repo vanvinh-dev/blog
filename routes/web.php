@@ -5,6 +5,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\khoacontroller;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\subjectController;
+use App\Http\Controllers\subject1Controller;
 
 
 /*
@@ -42,10 +43,12 @@ Route::post('/savemon', [subjectController::class, 'store']);
 Route::get('/suamon/{id}', [subjectController::class, 'suamon']);
 Route::post('/suamon/{id}', [subjectController::class, 'postsuamon']);
 Route::get('/xoamon/{id}', [subjectController::class, 'destroy']);
-// Route::get('/edit/{id}', "subjectController@edit");
-// Route::get('/show/{id}', "TeacherController@show");
-// Route::get('/create', "TeacherController@create");
-// Route::get('/store', "TeacherController@store");
-// Route::get('/update/{id}', "TeacherController@index");
 
+
+Route::get('/qlmonhocs', [subject1Controller::class, 'index']);
+Route::get('/themmons', [subject1Controller::class, 'themmon']);
+Route::post('/savemons', [subject1Controller::class, 'store']);
+Route::get('/suamons/{id}', [subject1Controller::class, 'suamon']);
+Route::post('/suamons/{id}', [subject1Controller::class, 'postsuamon']);
+Route::get('/xoamons/{id}', [subject1Controller::class, 'destroy']);
 

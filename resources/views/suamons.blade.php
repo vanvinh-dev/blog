@@ -37,17 +37,39 @@
         <!-- End of Topbar -->
       <div style="padding:20px;background-color: white;">
         <!-- Begin Page Content -->
-        <form method="post" action="/save" class="row">
+        <form method="post" action="/suamons/<?php echo $subject->id; ?>" class="row">
         @method('POST')
                 @csrf
-          <div class="form-group col-md-6">
-            <label for="exampleInputEmail1">Mã khoa</label>
-            <input class="form-control" type="text" placeholder="Nhập mã khoa"  name="makhoa" required>
+         <div class="form-group col-md-6">
+            <label for="exampleInputEmail1">Mã bộ môn</label>
+            <input class="form-control" type="text" placeholder="Nhập bộ môn" name="mamh" value="<?php echo $subject->mamh; ?>">
           </div>
           <div class="form-group col-md-6">
-            <label for="exampleInputEmail1">Tên khoa</label>
-            <input class="form-control" type="text" placeholder="Nhập tên khoa"  name="tenkhoa" required>
+            <label for="exampleInputEmail1">Tên bộ môn</label>
+            <input class="form-control" type="text" placeholder="Nhập tên bộ môn" name="name" value="<?php echo $subject->name; ?>">
           </div>
+            <div class="form-group col-md-6">
+            <label for="exampleInputEmail1">Số tín chỉ</label>
+            <input class="form-control" type="number" placeholder="Nhập tín chỉ bộ môn" name="tinchi" value="<?php echo $subject->tinchi; ?>">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="exampleInputEmail1">Số chứng chỉ</label>
+            <input class="form-control" type="number" placeholder="Nhập  chứng chỉ bộ môn" name="chungchi" value="<?php echo $subject->chungchi; ?>">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="exampleInputEmail1">Số tiết học</label>
+            <input class="form-control" type="number" placeholder="Nhập tiết học bộ môn" name="sotiethoc" value="<?php echo $subject->sotiethoc; ?>">
+          </div>
+
+           <div class="form-group col-md-6">
+            <label for="exampleInputEmail1">Bộ môn</label>
+            <select  class="form-control" name="mabomon">
+                        <?php foreach($subjects as $item): ?>
+                            <option <?php if($item['id']==$subject->mabomon) echo 'selected'; ?> value="{{$item['id']}}">{{$item['name']}}</option>
+                        <?php endforeach ?>
+            </select>
+           
+            </div>
           <div class="col-md-12">
               <button type="submit" class="btn btn-primary btn-sm ">Lưu</button>
           </div>

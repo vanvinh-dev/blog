@@ -33,6 +33,12 @@
           <span>Quản lý bộ môn</span>
         </a>
       </li>
+       <li class="nav-item">
+        <a class="nav-link" href="/qlmonhocs" >
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Quản môn học</span>
+        </a>
+      </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
@@ -40,14 +46,12 @@
           <i class="fas fa-fw fa-wrench"></i>
           <span>Quản lý khoa</span>
         </a>
-
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/member">
           <i class="fas fa-fw fa-wrench"></i>
           <span>Quản lý giáo viên</span>
         </a>
-
       </li>
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">

@@ -8,9 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>SB Admin 2 - Dashboard</title>
+  <title></title>
 
   @include('include.css')
 
@@ -35,25 +34,53 @@
         <!-- Topbar -->
         @include('include.header')
         <!-- End of Topbar -->
-      <div style="padding:20px;background-color: white;">
+
         <!-- Begin Page Content -->
-        <form method="post" action="/save" class="row">
-        @method('POST')
-                @csrf
-          <div class="form-group col-md-6">
-            <label for="exampleInputEmail1">Mã khoa</label>
-            <input class="form-control" type="text" placeholder="Nhập mã khoa"  name="makhoa" required>
-          </div>
-          <div class="form-group col-md-6">
-            <label for="exampleInputEmail1">Tên khoa</label>
-            <input class="form-control" type="text" placeholder="Nhập tên khoa"  name="tenkhoa" required>
-          </div>
-          <div class="col-md-12">
-              <button type="submit" class="btn btn-primary btn-sm ">Lưu</button>
-          </div>
-          
-        </form>
+        
+        <div style="padding:20px">
+            <div style="">
+              <a class="btn btn-info btn-sm" style="float:right;margin-bottom:15px" href="/themmons">Thêm môn học</a>
+            </div>
+            <table class="table  table table-bordered" style="    background-color: white;">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Mã môn học</th>
+                  <th scope="col">Tên môn học</th>
+                   <th scope="col">Số tín chỉ</th>
+                   <th scope="col">số chứng chỉ</th>
+                   <th scope="col">Số tiết học</th>
+                   <th scope="col">mã bộ môn</th>
+                   <th scope="col">tên bộ môn</th>
+                       <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+              <?php $stt=0; foreach($subject as $item): $stt++?>
+                    
+                    <tr>
+                        <th scope="row">{{$stt}}</th>
+                        <td>{{$item['mamh']}}</td>
+                        <td>{{$item['name']}}</td>
+                        <td>{{$item['tinchi']}}</td>
+                        <td>{{$item['chungchi']}}</td>
+                         <td>{{$item['sotiethoc']}}</td>
+                          <td>{{$item['mabomon']}}</td>
+                                <td><?php echo App\Models\subject::find($item['mabomon'])->name ?></td>
+                        <td style="text-align: center;">
+                        <a href="/suamons/{{$item['id']}}"><i class="fa fa-edit" style="margin-right:10px"></i></a>
+                         <a href="/xoamons/{{$item['id']}}"><i class="fa fa-trash-alt" style="    color: #de3d0b;"></i></a></td>
+                    </tr>
+                    <tr>
+                    
+                <?php endforeach ?>
+              </tbody>
+            </table>
         </div>
+        
+      
+        <!-- /.container-fluid -->
+
       </div>
       <!-- End of Main Content -->
 

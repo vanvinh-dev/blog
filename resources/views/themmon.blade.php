@@ -42,19 +42,19 @@
                 @csrf
          <div class="form-group col-md-6">
             <label for="exampleInputEmail1">Mã bộ môn</label>
-            <input class="form-control" type="text" placeholder="Nhập tên khoa" name="mamh">
+            <input class="form-control" type="text" placeholder="Nhập mã bộ môn" name="mamh" required>
           </div>
           <div class="form-group col-md-6">
             <label for="exampleInputEmail1">Tên bộ môn</label>
-            <input class="form-control" type="text" placeholder="Nhập tên khoa" name="name">
+            <input class="form-control" type="text" placeholder="Nhập tên bộ môn" name="name" required>
           </div>
             <div class="form-group col-md-6">
             <label for="exampleInputEmail1">Số tín chỉ</label>
-            <input class="form-control" type="number" placeholder="Nhập tên khoa" name="tinchi">
+            <input class="form-control" type="number" placeholder="Nhập số tín chỉ" name="tinchi" required>
           </div>
            <div class="form-group col-md-6">
             <label for="exampleInputEmail1">Khoa</label>
-            <select  class="form-control" name="khoa">
+            <select  class="form-control" name="khoa" required>
                         <?php foreach($khoa as $item): ?>
                             <option value="{{$item['id']}}">{{$item['tenkhoa']}}</option>
                         <?php endforeach ?>
