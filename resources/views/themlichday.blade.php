@@ -593,6 +593,7 @@ table.fc-border-separate {
 	}
 	
 .fc-agenda .fc-agenda-axis {
+  color:white;
 	width: 50px;
 	padding: 0 4px;
 	vertical-align: middle;
@@ -920,7 +921,7 @@ table.fc-header{
 		var calendar =  $('#calendar').fullCalendar({
 			header: {
 				left: 'title',
-				center: 'agendaDay,agendaWeek,month',
+				center: 'agendaWeek,month', //defaul  'agendaDay,agendaWeek,month',
 				right: 'prev,next today'
 			},
 			editable: true,
@@ -933,7 +934,7 @@ table.fc-header{
                 month: 'ddd',    // Mon
                 week: 'ddd d', // Mon 7
                 day: 'dddd M/d',  // Monday 9/7
-                agendaDay: 'dddd d'
+                // agendaDay: 'dddd d' defaul
             },
             titleFormat: {
                 month: 'MMMM yyyy', // September 2009
@@ -982,52 +983,52 @@ table.fc-header{
 				
 			},
 			
-			events: [
-				{
-					title: 'All Day Event',
-					start: new Date(y, m, 1)
-				},
-				{
-					id: 999,
-					title: 'Repeating Event',
-					start: new Date(y, m, d-3, 16, 0),
-					allDay: false,
-					className: 'info'
-				},
-				{
-					id: 999,
-					title: 'Repeating Event',
-					start: new Date(y, m, d+4, 16, 0),
-					allDay: false,
-					className: 'info'
-				},
-				{
-					title: 'Meeting',
-					start: new Date(y, m, d, 10, 30),
-					allDay: false,
-					className: 'important'
-				},
-				{
-					title: 'Lunch',
-					start: new Date(y, m, d, 12, 0),
-					end: new Date(y, m, d, 14, 0),
-					allDay: false,
-					className: 'important'
-				},
-				{
-					title: 'Birthday Party',
-					start: new Date(y, m, d+1, 19, 0),
-					end: new Date(y, m, d+1, 22, 30),
-					allDay: false,
-				},
-				{
-					title: 'Click for Google',
-					start: new Date(y, m, 28),
-					end: new Date(y, m, 29),
-					url: 'https://ccp.cloudaccess.net/aff.php?aff=5188',
-					className: 'success'
-				}
-			],			
+			// events: [
+			// 	{
+			// 		title: 'All Day Event',
+			// 		start: new Date(y, m, 1)
+			// 	},
+			// 	{
+			// 		id: 999,
+			// 		title: 'Repeating Event',
+			// 		start: new Date(y, m, d-3, 16, 0),
+			// 		allDay: false,
+			// 		className: 'info'
+			// 	},
+			// 	{
+			// 		id: 999,
+			// 		title: 'Repeating Event',
+			// 		start: new Date(y, m, d+4, 16, 0),
+			// 		allDay: false,
+			// 		className: 'info'
+			// 	},
+			// 	{
+			// 		title: 'Meeting',
+			// 		start: new Date(y, m, d, 10, 30),
+			// 		allDay: false,
+			// 		className: 'important'
+			// 	},
+			// 	{
+			// 		title: 'Lunch',
+			// 		start: new Date(y, m, d, 12, 0),
+			// 		end: new Date(y, m, d, 14, 0),
+			// 		allDay: false,
+			// 		className: 'important'
+			// 	},
+			// 	{
+			// 		title: 'Birthday Party',
+			// 		start: new Date(y, m, d+1, 19, 0),
+			// 		end: new Date(y, m, d+1, 22, 30),
+			// 		allDay: false,
+			// 	},
+			// 	{
+			// 		title: 'Click for Google',
+			// 		start: new Date(y, m, 28),
+			// 		end: new Date(y, m, 29),
+			// 		url: 'https://ccp.cloudaccess.net/aff.php?aff=5188',
+			// 		className: 'success'
+			// 	}
+			// ],			
 		});
 		
 		
@@ -1098,19 +1099,19 @@ var defaults = {
 	// locale
 	isRTL: false,
 	firstDay: 0,
-	monthNames: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+	monthNames: ['Tháng 1','Tháng 2','Tháng 3','Tháng 4','Tháng 5','Tháng 6','Tháng 7','Tháng 8','Tháng 9','Tháng 10','Tháng 11','Tháng 12'],
 	monthNamesShort: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-	dayNames: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
-	dayNamesShort: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+	dayNames: ['Chủ nhật','Thứ 2','Thứ 3','Thứ 4','Thứ 5','Thứ 6','Thứ 7'],
+	dayNamesShort: ['CN','T2','T3','T4','T5','T6','T7'],
 	buttonText: {
 		prev: "<span class='fc-text-arrow'>‹</span>",
 		next: "<span class='fc-text-arrow'>›</span>",
 		prevYear: "<span class='fc-text-arrow'>«</span>",
 		nextYear: "<span class='fc-text-arrow'>»</span>",
-		today: 'today',
-		month: 'month',
-		week: 'week',
-		day: 'day'
+		today: 'Hôm nay',
+		month: 'Tháng',
+		week: 'Tuần',
+		day: 'Ngày'
 	},
 	
 	// jquery-ui theming
