@@ -6,7 +6,7 @@ use App\Http\Controllers\khoacontroller;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\subjectController;
 use App\Http\Controllers\subject1Controller;
-
+use App\Http\Controllers\scheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,3 +52,4 @@ Route::get('/suamons/{id}', [subject1Controller::class, 'suamon']);
 Route::post('/suamons/{id}', [subject1Controller::class, 'postsuamon']);
 Route::get('/xoamons/{id}', [subject1Controller::class, 'destroy']);
 
+Route::get('/themlich', [scheduleController::class, 'index']);
