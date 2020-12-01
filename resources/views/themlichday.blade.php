@@ -830,7 +830,25 @@ table.fc-header{
       <div id='wrap'>
 
 <div id='calendar'></div>
-
+<div class="modals fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 <div style='clear:both'></div>
 </div>
       <!-- End of Main Content -->
@@ -857,6 +875,7 @@ table.fc-header{
   </a>
 
   <!-- Logout Modal-->
+
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -874,6 +893,7 @@ table.fc-header{
       </div>
     </div>
   </div>
+  
   <!-- Page level custom scripts -->
   @include('include.script')
 <script>
@@ -944,19 +964,20 @@ table.fc-header{
 			allDaySlot: false,
 			selectHelper: true,
 			select: function(start, end, allDay) {
-				var title = prompt('Event Title:');
-				if (title) {
-					calendar.fullCalendar('renderEvent',
-						{
-							title: title,
-							start: start,
-							end: end,
-							allDay: allDay
-						},
-						true // make the event "stick"
-					);
-				}
-				calendar.fullCalendar('unselect');
+				$('.modals').modal('toggle');
+				// var title = prompt('Event Title:');
+				// if (title) {
+				// 	calendar.fullCalendar('renderEvent',
+				// 		{
+				// 			title: title,
+				// 			start: start,
+				// 			end: end,
+				// 			allDay: allDay
+				// 		},
+				// 		true // make the event "stick"
+				// 	);
+				// }
+				// calendar.fullCalendar('unselect');
 			},
 			droppable: true, // this allows things to be dropped onto the calendar !!!
 			drop: function(date, allDay) { // this function is called when something is dropped
@@ -983,52 +1004,52 @@ table.fc-header{
 				
 			},
 			
-			// events: [
-			// 	{
-			// 		title: 'All Day Event',
-			// 		start: new Date(y, m, 1)
-			// 	},
-			// 	{
-			// 		id: 999,
-			// 		title: 'Repeating Event',
-			// 		start: new Date(y, m, d-3, 16, 0),
-			// 		allDay: false,
-			// 		className: 'info'
-			// 	},
-			// 	{
-			// 		id: 999,
-			// 		title: 'Repeating Event',
-			// 		start: new Date(y, m, d+4, 16, 0),
-			// 		allDay: false,
-			// 		className: 'info'
-			// 	},
-			// 	{
-			// 		title: 'Meeting',
-			// 		start: new Date(y, m, d, 10, 30),
-			// 		allDay: false,
-			// 		className: 'important'
-			// 	},
-			// 	{
-			// 		title: 'Lunch',
-			// 		start: new Date(y, m, d, 12, 0),
-			// 		end: new Date(y, m, d, 14, 0),
-			// 		allDay: false,
-			// 		className: 'important'
-			// 	},
-			// 	{
-			// 		title: 'Birthday Party',
-			// 		start: new Date(y, m, d+1, 19, 0),
-			// 		end: new Date(y, m, d+1, 22, 30),
-			// 		allDay: false,
-			// 	},
-			// 	{
-			// 		title: 'Click for Google',
-			// 		start: new Date(y, m, 28),
-			// 		end: new Date(y, m, 29),
-			// 		url: 'https://ccp.cloudaccess.net/aff.php?aff=5188',
-			// 		className: 'success'
-			// 	}
-			// ],			
+			events: [
+				// {
+				// 	title: 'All Day Event',
+				// 	start: new Date(y, m, 1)
+				// },
+				{
+					id: 999,
+					title: 'Repeating Event\n134',
+					start: new Date(y, m, d-1, 5, 0),
+					allDay: false,
+					className: 'info'
+				},
+				// {
+				// 	id: 999,
+				// 	title: 'Repeating Event',
+				// 	start: new Date(y, m, d+4, 16, 0),
+				// 	allDay: false,
+				// 	className: 'info'
+				// },
+				// {
+				// 	title: 'Meeting',
+				// 	start: new Date(y, m, d, 10, 30),
+				// 	allDay: false,
+				// 	className: 'important'
+				// },
+				// {
+				// 	title: 'Lunch',
+				// 	start: new Date(y, m, d, 12, 0),
+				// 	end: new Date(y, m, d, 14, 0),
+				// 	allDay: false,
+				// 	className: 'important'
+				// },
+				// {
+				// 	title: 'Birthday Party',
+				// 	start: new Date(y, m, d+1, 19, 0),
+				// 	end: new Date(y, m, d+1, 22, 30),
+				// 	allDay: false,
+				// },
+				// {
+				// 	title: 'Click for Google',
+				// 	start: new Date(y, m, 28),
+				// 	end: new Date(y, m, 29),
+				// 	url: 'https://ccp.cloudaccess.net/aff.php?aff=5188',
+				// 	className: 'success'
+				// }
+			],			
 		});
 		
 		
@@ -6860,6 +6881,7 @@ function segmentElementEach(segments, callback) { // TODO: use in AgendaView?
 
 // A cmp function for determining which segments should appear higher up
 function compareDaySegments(a, b) {
+	console.log(a,b)
 	return (b.rightCol - b.leftCol) - (a.rightCol - a.leftCol) || // put wider events first
 		b.event.allDay - a.event.allDay || // if tie, put all-day events first (booleans cast to 0/1)
 		a.event.start - b.event.start || // if a tie, sort by event start date
