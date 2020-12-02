@@ -30,12 +30,12 @@
     <div id="content-wrapper" class="d-flex flex-column">
 
       <!-- Main Content -->
-      <div id="content">
+      <div id="container-fluid">
         
         <!-- Topbar -->
         @include('include.header')
         <!-- End of Topbar -->
-      <div style="padding:20px;background-color: white;">
+      <div style="padding:20px;background-color: white;" >
         <!-- Begin Page Content -->
         <form method="post" action="/savemon" class="row">
         @method('POST')

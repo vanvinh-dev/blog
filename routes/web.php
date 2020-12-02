@@ -52,4 +52,6 @@ Route::get('/suamons/{id}', [subject1Controller::class, 'suamon']);
 Route::post('/suamons/{id}', [subject1Controller::class, 'postsuamon']);
 Route::get('/xoamons/{id}', [subject1Controller::class, 'destroy']);
 
-Route::get('/themlich', [scheduleController::class, 'index']);
+Route::get('/xemlich', [scheduleController::class, 'index']);
+Route::get('/themlich', [scheduleController::class, 'index1']);
+Route::get('/getmonhoc', [scheduleController::class, 'getmonhoc']);
