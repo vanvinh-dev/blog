@@ -63,6 +63,9 @@ select:focus {
 select option {
     background-color: #616161
 }
+#select-type option{
+     background-color: white
+}
 
 select option:focus {
     background-color: #00C853 !important
@@ -168,7 +171,8 @@ button:focus {
 
 .datepicker {
     background-color: #fff;
-    border: none
+    border: none;
+    padding:10px 20px 10px 20px!important;
 }
 
 .datepicker-dropdown {
@@ -213,8 +217,7 @@ thead tr:nth-child(3) th {
 
 .active {
     border-radius: 50% !important;
-    background-image: linear-gradient(#90CAF9, #64B5F6) !important;
-    color: #fff !important
+
 }
 
 .prev,
@@ -234,6 +237,17 @@ thead tr:nth-child(3) th {
     background-color: inherit !important;
     opacity: 1
 }
+#select-type{
+        padding: 10px 20px 10px 20px!important;
+    border: 1px solid lightgrey !important;
+    border-radius: 6px !important;
+    box-sizing: border-box!important;
+    background-color: #fff !important;
+    color: #2C3E50!important;
+    font-size: 14px!important;
+    letter-spacing: 1px!important;
+}
+
 </style>
 
 </head>
@@ -259,27 +273,45 @@ thead tr:nth-child(3) th {
       <div id='wrap'>
      <div class=" ">
     <div class="row d-flex justify-content-center">
-        <div class="col-md-12 col-lg-9 col-xl-10">
+        <div class="col-md-12 col-lg-12 col-xl-11">
             <div class="card border-0">
                 <div class="row px-3 m-b-lg" style="margin-bottom:30px">
-                    <div class="col-sm-10">
+                    <div class="col-sm-12 b-10" style="margin-bottom: 19px;">
+                        <lable class="text-white m">1. Thông tin cơ bản</lable>
+                    </div>
+                    <div class="col-sm-12">
                         <div class="mb-2 mob">
                         <form autocomplete="off">
-                            <div class="form-group"> <input type="text" id="dp1" class="datepicker mr-2" placeholder="Chọn ngày" name="date"><br> 
-                            <!-- <button type="submit" class="btn btn-success">Submit</button>  -->
+                            <div class="form-group">
+                             <input  type="text" id="dp1" class="datepicker mr-5 form-controll" placeholder="Chọn ngày" name="date">
+                                <input class="form-controll mr-5"  type="text" id="dp2"  placeholder="Bậc học" name="date">
+                                <select class="form-controll" id="select-type">
+                                        <option value="0">
+                                                Dạy tối 
+                                        </option>
+                                        <option value="1">
+                                                Dạy hè 
+                                        </option>
+                                </select>
+                            
                             </div>
                         </form>
                     </div>
                     </div>
                 </div>
                 <div class="row px-3">
+                 <div class="col-sm-12 b-10" style="margin-bottom: 19px;">
+                        <lable class="text-white m">2. Lên lịch</lable>
+                    </div>
                     <div class="col-sm-12 list">
-                        <div class="mb-2 row justify-content-between px-3"> 
-                        <select class="mb-2 mob" id="select-Mon">
+                        <div class="mb-4 row justify-content-between px-3" style="margin-bottom:15px"> 
+                            <select class="mb-2 mob" id="select-Mon1">
                                
                             </select>
-                            <div class="mob"> <label class="text-grey mr-1">Từ</label> <input class="ml-1" type="time" name="from"> </div>
-                            <div class="mob mb-2"> <label class="text-grey mr-4">Đến</label> <input class="ml-1" type="time" name="to"> </div>
+                            <div class="mob" style="display: grid;"> <label class="text-grey mr-1">Từ</label> <input class="ml-1" type="time" name="from" id="starttime1" style="    margin-bottom: 8px;"> </div>
+                            <div class="mob mb-2" style="display: grid;"> <label class="text-grey mr-4">Đến</label> <input class="ml-1" type="time" name="to" id="endtime1"> </div>
+                            <div class="mob mb-2">  <input class="ml-1" type="text" name="to" placeholder="Địa điểm" id="place1" style="margin-top: 33px;"> </div>
+                            <div class="mob mb-2">  <input class="ml-1" type="text" name="to" placeholder="Sĩ số" id="amount1" style="margin-top: 33px;"> </div>
                             <div class="mt-1 cancel fa fa-times text-danger"></div>
                         </div>
                         
@@ -289,11 +321,11 @@ thead tr:nth-child(3) th {
                     <div class="col-sm-10">
                         <div class="row px-3">
                             <div class="fa fa-plus-circle text-success add"></div>
-                            <p class="text-success ml-3 add">Add</p>
+                            <p class="text-success ml-3 add">Thêm lịch dạy</p>
                         </div>
                     </div>
                 </div>
-                <div class="row px-3 mt-3 justify-content-center"> <button class="btn exit mr-2">Cancel</button> <button class="btn btn-success ml-2">Done</button> </div>
+                <div class="row px-3 mt-3 justify-content-center"> <button class="btn btn-success ml-2">Hoàn thành</button> </div>
             </div>
         </div>
     </div>
@@ -308,7 +340,7 @@ thead tr:nth-child(3) th {
    
  
   <script>
-
+    let index = 1
     $(document).ready(function(){
     $.ajax({
         url:'/getmonhoc',
@@ -320,25 +352,27 @@ thead tr:nth-child(3) th {
                 select += `<option value="${item.id}">${item.name}</option>
                 `
             })
-           $('#select-Mon').append(select)
+           $('#select-Mon1').append(select)
             $('.add').click(function(){
-                 console.log(select)
+                index++
                 $(".list").append(
-                '<div class="mb-2 row justify-content-between px-3">' +
-                    '<select class="mob mb-2">' +
-                            select +
-                        '</select>' +
-                    '<div class="mob">' +
-                        '<label class="text-grey mr-1">From</label>' +
-                        '<input class="ml-1" type="time" name="from">' +
-                        '</div>' +
-                    '<div class="mob mb-2">' +
-                        '<label class="text-grey mr-4">To</label>' +
-                        '<input class="ml-1" type="time" name="to">' +
-                        '</div>' +
-                    '<div class="mt-1 cancel fa fa-times text-danger">' +
-                        '</div>' +
-                    '</div>');
+                `<div class="mb-4 row justify-content-between px-3" style="margin-bottom:15px">
+                    <select class="mob mb-2" id="select-Mon${index}">
+                            ${select} 
+                        </select>
+                    <div class="mob" style="display: grid;">
+                        <label class="text-grey mr-1">Từ</label>
+                        <input style="    margin-bottom: 8px;" class="ml-1" type="time" name="from" id="starttime${index}">
+                        </div>
+                    <div class="mob mb-2" style="display: grid;">
+                        <label class="text-grey mr-4">Đến</label>
+                        <input class="ml-1" type="time" name="to"  id="endtime${index}">
+                        </div>
+                          <div class="mob mb-2">  <input  class="ml-1" type="text" name="to" placeholder="Địa điểm" id="place${index}" style="margin-top:33px"> </div>
+                            <div class="mob mb-2">  <input class="ml-1" type="text" name="to" placeholder="Sĩ số" id="amount${index}" style="margin-top:33px"> </div>
+                        <div class="mt-1 cancel fa fa-times text-danger">
+                        </div>
+                    </div>`);
                 });
         }
     })
