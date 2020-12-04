@@ -830,25 +830,7 @@ table.fc-header{
       <div id='wrap'>
 
 <div id='calendar'></div>
-<div class="modals fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style>
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+
 <div style='clear:both'></div>
 </div>
       <!-- End of Main Content -->
@@ -937,7 +919,7 @@ table.fc-header{
 	
 		/* initialize the calendar
 		-----------------------------------------------------------------*/
-		
+		console.log(d,922)
 		var calendar =  $('#calendar').fullCalendar({
 			header: {
 				left: 'title',
@@ -964,7 +946,7 @@ table.fc-header{
 			allDaySlot: false,
 			selectHelper: true,
 			select: function(start, end, allDay) {
-				$('.modals').modal('toggle');
+				// $('.modals').modal('toggle');
 				// var title = prompt('Event Title:');
 				// if (title) {
 				// 	calendar.fullCalendar('renderEvent',
@@ -1012,7 +994,14 @@ table.fc-header{
 				{
 					id: 999,
 					title: 'Repeating Event\n134',
-					start: new Date(y, m, d-1, 5, 0),
+					start: new Date(y, m, d+1, 5, 0),
+					allDay: false,
+					className: 'info'
+				},
+				{
+					id: 1000,
+					title: 'Repeating Event\n134',
+					start: new Date(y, m, d+1, 6, 0),
 					allDay: false,
 					className: 'info'
 				},

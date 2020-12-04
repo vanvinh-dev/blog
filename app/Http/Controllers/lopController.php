@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\classs;
 use Illuminate\Http\Request;
 
-class ClasssController extends Controller
+class lopController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +40,10 @@ class ClasssController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\classs  $classs
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(classs $classs)
+    public function show($id)
     {
         //
     }
@@ -52,10 +51,10 @@ class ClasssController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\classs  $classs
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(classs $classs)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +63,10 @@ class ClasssController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\classs  $classs
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, classs $classs)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +74,10 @@ class ClasssController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\classs  $classs
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(classs $classs)
+    public function destroy($id)
     {
         //
     }

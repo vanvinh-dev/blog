@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Teacher;
 use App\Models\member;
 use App\Models\subject;
+use App\Http\Controllers\Controller;
 
 class TeacherController extends Controller
 {
@@ -18,6 +19,11 @@ class TeacherController extends Controller
     {
          $member = member::where('chucvu','gv')->get();
          return view('teacher')->with('teacher',$member);
+    }
+    public function gettestsession(Request $re)
+    {
+        $value = $request->session()->get('key');
+       dd($value);
     }
     public function login()
     {

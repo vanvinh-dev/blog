@@ -248,6 +248,10 @@ thead tr:nth-child(3) th {
     letter-spacing: 1px!important;
 }
 
+.grid{
+        border-bottom: 1px solid #090909;
+    padding-bottom: 38px;
+}
 </style>
 
 </head>
@@ -304,15 +308,21 @@ thead tr:nth-child(3) th {
                         <lable class="text-white m">2. Lên lịch</lable>
                     </div>
                     <div class="col-sm-12 list">
-                        <div class="mb-4 row justify-content-between px-3" style="margin-bottom:15px"> 
+                        <div class="mb-4 row justify-content-between px-3 grid" style="margin-bottom:15px"> 
                             <select class="mb-2 mob" id="select-Mon1">
                                
                             </select>
+                            <div class="mob" style="display: grid;">
+                            <label class="text-grey mr-4">Lớp</label>
+                            <select class="mb-2 mob" id="lop1">
+                               
+                            </select>
+                             </div>
                             <div class="mob" style="display: grid;"> <label class="text-grey mr-1">Từ</label> <input class="ml-1" type="time" name="from" id="starttime1" style="    margin-bottom: 8px;"> </div>
                             <div class="mob mb-2" style="display: grid;"> <label class="text-grey mr-4">Đến</label> <input class="ml-1" type="time" name="to" id="endtime1"> </div>
                             <div class="mob mb-2">  <input class="ml-1" type="text" name="to" placeholder="Địa điểm" id="place1" style="margin-top: 33px;"> </div>
-                            <div class="mob mb-2">  <input class="ml-1" type="text" name="to" placeholder="Sĩ số" id="amount1" style="margin-top: 33px;"> </div>
-                            <div class="mt-1 cancel fa fa-times text-danger"></div>
+                            <div class="mob mb-2">  <input class="ml-1" type="number" name="to" placeholder="Sĩ số" id="amount1" style="margin-top: 33px;"> </div>
+                            <div class="mt-1 cancel fa fa-times text-white"></div>
                         </div>
                         
                     </div>
@@ -325,7 +335,7 @@ thead tr:nth-child(3) th {
                         </div>
                     </div>
                 </div>
-                <div class="row px-3 mt-3 justify-content-center"> <button class="btn btn-success ml-2">Hoàn thành</button> </div>
+                <div class="row px-3 mt-3 justify-content-center"> <button class="btn btn-success ml-2" onclick="sendata()">Hoàn thành</button> </div>
             </div>
         </div>
     </div>
@@ -346,36 +356,60 @@ thead tr:nth-child(3) th {
         url:'/getmonhoc',
         type:'GET',
         success:function(ret){
-            let monhoc = JSON.parse(ret)
-            let select =''
-            monhoc.forEach((item)=>{
-                select += `<option value="${item.id}">${item.name}</option>
-                `
+            $.ajax({
+                url:'/getlophoc',
+                type:'GET',
+                success:function(data){
+                    let lophoc = JSON.parse(data)
+                    console.log(lophoc,354)
+                    let selects =''
+                    lophoc.forEach((item)=>{
+                        selects += `<option value="${item.id}">${item.tenlop}</option>
+                        `
+                    })
+                    $('#lop1').append(selects)
+                    let monhoc = JSON.parse(ret)
+                    let select =''
+                    monhoc.forEach((item)=>{
+                        select += `<option value="${item.id}">${item.name}</option>
+                        `
+                    })
+                    $('#select-Mon1').append(select)
+                    $('.add').click(function(){
+                        index++
+                        $(".list").append(
+                        `<div class="mb-4 row justify-content-between px-3 grid" style="margin-bottom:15px">
+                            <select class="mob mb-2" id="select-Mon${index}">
+                                    ${select} 
+                                </select>
+                                 <div class="mob" style="display: grid;">
+                            <label class="text-grey mr-4">Lớp</label>
+                            <select class="mb-2 mob" id="lop${index}">
+                                ${selects}
+                            </select>
+                             </div>
+                            <div class="mob" style="display: grid;">
+                                <label class="text-grey mr-1">Từ</label>
+                                <input style="    margin-bottom: 8px;" class="ml-1" type="time" name="from" id="starttime${index}">
+                                </div>
+                            <div class="mob mb-2" style="display: grid;">
+                                <label class="text-grey mr-4">Đến</label>
+                                <input class="ml-1" type="time" name="to"  id="endtime${index}">
+                                </div>
+                                <div class="mob mb-2">  <input  class="ml-1" type="text" name="to" placeholder="Địa điểm" id="place${index}" style="margin-top:33px"> </div>
+                                    <div class="mob mb-2">  <input class="ml-1" type="number" name="to" placeholder="Sĩ số" id="amount${index}" style="margin-top:33px"> </div>
+                                <div class="mt-1 cancel fa fa-times text-white">
+                                </div>
+                            </div>`);
+                    });
+          
+                
+                }
             })
-           $('#select-Mon1').append(select)
-            $('.add').click(function(){
-                index++
-                $(".list").append(
-                `<div class="mb-4 row justify-content-between px-3" style="margin-bottom:15px">
-                    <select class="mob mb-2" id="select-Mon${index}">
-                            ${select} 
-                        </select>
-                    <div class="mob" style="display: grid;">
-                        <label class="text-grey mr-1">Từ</label>
-                        <input style="    margin-bottom: 8px;" class="ml-1" type="time" name="from" id="starttime${index}">
-                        </div>
-                    <div class="mob mb-2" style="display: grid;">
-                        <label class="text-grey mr-4">Đến</label>
-                        <input class="ml-1" type="time" name="to"  id="endtime${index}">
-                        </div>
-                          <div class="mob mb-2">  <input  class="ml-1" type="text" name="to" placeholder="Địa điểm" id="place${index}" style="margin-top:33px"> </div>
-                            <div class="mob mb-2">  <input class="ml-1" type="text" name="to" placeholder="Sĩ số" id="amount${index}" style="margin-top:33px"> </div>
-                        <div class="mt-1 cancel fa fa-times text-danger">
-                        </div>
-                    </div>`);
-                });
+            
         }
     })
+      
     $('.datepicker').datepicker({
     format: 'dd-mm-yyyy',
     todayHighlight: true,
@@ -383,11 +417,59 @@ thead tr:nth-child(3) th {
     });
     
 
-$(".list").on('click', '.cancel', function(){
-$(this).parent().remove();
-});
+    $(".list").on('click', '.cancel', function(){
+    $(this).parent().remove();
+    });
 
-}); 
+    }); 
+    function sendata(){
+        let arr = []
+        let date = document.getElementById('dp1')
+        let bachoc = document.getElementById('dp2')
+        let type = $( "#select-type option:checked" ).val()
+        if(date.value == ''){
+            alert('Bạn vui lòng chọn ngày lên lịch!')
+            return
+        }
+        if(bachoc.value == ''){
+            alert('Bạn vui lòng chọn bậc học!')
+            return
+        }
+        for(let i = 1;i<=index;i++){
+            let mabomon = $( `#select-Mon${i} option:checked` ).val()
+            let lophoc = $( `#lop${i} option:checked` ).val()
+            let timestart = $( `#starttime${i}` ).val()
+            let timend =  $( `#endtime${i}` ).val()
+            let diadiem =  $( `#place${i}` ).val()
+            let syso =  $( `#amount${i}` ).val()
+            let mamh  = $( `#select-Mon${i} option:checked` ).val()
+            let obj = {
+                date:date.value,
+                bachoc:bachoc.value,
+                type:type,
+                mabomon:mabomon,
+                lophoc:lophoc,
+                timestart:timestart,
+                timend:timend,
+                diadiem:diadiem,
+                syso:syso,
+                mamh:mamh
+            }
+            arr.push(obj)
+        }
+        console.log(arr,460)
+         $.ajax({
+            type: 'post',
+             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url: '/saveSchedule',
+            data: {
+                data:arr
+            },
+            success: function () {
+              
+            }
+          });
+    }
   </script>
 </body>
 
