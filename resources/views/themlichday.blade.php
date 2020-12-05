@@ -248,10 +248,7 @@ thead tr:nth-child(3) th {
     letter-spacing: 1px!important;
 }
 
-.grid{
-        border-bottom: 1px solid #090909;
-    padding-bottom: 38px;
-}
+
 </style>
 
 </head>
@@ -287,6 +284,9 @@ thead tr:nth-child(3) th {
                         <div class="mb-2 mob">
                         <form autocomplete="off">
                             <div class="form-group">
+                             <input style="display:none" class="form-controll mr-5"  type="text" id="session"  placeholder="Giao viên" name="date" value="<?php if(session('user')){
+                                    echo session('user')[0]['id'];
+                             }  ?>">
                              <input  type="text" id="dp1" class="datepicker mr-5 form-controll" placeholder="Chọn ngày" name="date">
                                 <input class="form-controll mr-5"  type="text" id="dp2"  placeholder="Bậc học" name="date">
                                 <select class="form-controll" id="select-type">
@@ -321,7 +321,7 @@ thead tr:nth-child(3) th {
                             <div class="mob" style="display: grid;"> <label class="text-grey mr-1">Từ</label> <input class="ml-1" type="time" name="from" id="starttime1" style="    margin-bottom: 8px;"> </div>
                             <div class="mob mb-2" style="display: grid;"> <label class="text-grey mr-4">Đến</label> <input class="ml-1" type="time" name="to" id="endtime1"> </div>
                             <div class="mob mb-2">  <input class="ml-1" type="text" name="to" placeholder="Địa điểm" id="place1" style="margin-top: 33px;"> </div>
-                            <div class="mob mb-2">  <input class="ml-1" type="number" name="to" placeholder="Sĩ số" id="amount1" style="margin-top: 33px;"> </div>
+                            
                             <div class="mt-1 cancel fa fa-times text-white"></div>
                         </div>
                         
@@ -397,7 +397,7 @@ thead tr:nth-child(3) th {
                                 <input class="ml-1" type="time" name="to"  id="endtime${index}">
                                 </div>
                                 <div class="mob mb-2">  <input  class="ml-1" type="text" name="to" placeholder="Địa điểm" id="place${index}" style="margin-top:33px"> </div>
-                                    <div class="mob mb-2">  <input class="ml-1" type="number" name="to" placeholder="Sĩ số" id="amount${index}" style="margin-top:33px"> </div>
+                                    
                                 <div class="mt-1 cancel fa fa-times text-white">
                                 </div>
                             </div>`);
@@ -424,9 +424,14 @@ thead tr:nth-child(3) th {
     }); 
     function sendata(){
         let arr = []
+        let idgv = document.getElementById('session')
         let date = document.getElementById('dp1')
         let bachoc = document.getElementById('dp2')
         let type = $( "#select-type option:checked" ).val()
+         if(idgv.value==''){
+              alert('Bạn chưa đăng nhập');
+            return
+         }
         if(date.value == ''){
             alert('Bạn vui lòng chọn ngày lên lịch!')
             return
@@ -441,7 +446,7 @@ thead tr:nth-child(3) th {
             let timestart = $( `#starttime${i}` ).val()
             let timend =  $( `#endtime${i}` ).val()
             let diadiem =  $( `#place${i}` ).val()
-            let syso =  $( `#amount${i}` ).val()
+            // let syso =  $( `#amount${i}` ).val()
             let mamh  = $( `#select-Mon${i} option:checked` ).val()
             let obj = {
                 date:date.value,
@@ -452,12 +457,12 @@ thead tr:nth-child(3) th {
                 timestart:timestart,
                 timend:timend,
                 diadiem:diadiem,
-                syso:syso,
-                mamh:mamh
+                // syso:syso,
+                mamh:mamh,
+                idgv:Number(idgv.value)
             }
             arr.push(obj)
         }
-        console.log(arr,460)
          $.ajax({
             type: 'post',
              headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -465,8 +470,10 @@ thead tr:nth-child(3) th {
             data: {
                 data:arr
             },
-            success: function () {
-              
+            success: function (ret) {
+              if(ret){
+                  alert('Thêm dữ liệu thành công')
+              }
             }
           });
     }

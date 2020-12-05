@@ -23,6 +23,9 @@ class CreateMembersTable extends Migration
             $table->integer('phucap');
             $table->String('chucvu');
             $table->timestamps();
+            $table->String('email');
+            $table->String('password');
+
         });
     }
 

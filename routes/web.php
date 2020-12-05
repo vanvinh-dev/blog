@@ -19,7 +19,6 @@ use App\Http\Controllers\scheduleController;
 |
 */
 
-
 Route::get('/', [TeacherController::class, 'indexoff']);
 Route::get('/member', [TeacherController::class, 'index']);
 Route::get('/create', [TeacherController::class, 'create']);
@@ -29,7 +28,7 @@ Route::get('/xoagv/{id}', [TeacherController::class, 'destroy']);
 Route::get('/login', [TeacherController::class, 'login']);
 Route::post('/loginpost', [TeacherController::class, 'postlogin']);
 Route::get('/themlich', [TeacherController::class, 'themlich']);
-Route::post('/gettestsession', [TeacherController::class, 'gettestsession']);
+
 
 Route::get('/khoa', [khoacontroller::class, 'hienthi']);
 Route::get('/themkhoa', [khoacontroller::class, 'themkhoa']);
@@ -53,11 +52,9 @@ Route::get('/suamons/{id}', [subject1Controller::class, 'suamon']);
 Route::post('/suamons/{id}', [subject1Controller::class, 'postsuamon']);
 Route::get('/xoamons/{id}', [subject1Controller::class, 'destroy']);
 
-Route::get('/xemlich', [scheduleController::class, 'index']);
+Route::get('/xemlich', [scheduleController::class, 'view']);
 Route::get('/themlich', [scheduleController::class, 'index1']);
 Route::get('/getmonhoc', [scheduleController::class, 'getmonhoc']);
 Route::get('/getlophoc', [scheduleController::class, 'getlophoc']);
 Route::post('/saveSchedule', [scheduleController::class, 'saveSchedule']);
 Route::get('/viewSchedule', [scheduleController::class, 'viewSchedule']);
-Route::post('/testsession', [scheduleController::class, 'testsession']);
-Route::get('/testsession', [scheduleController::class, 'gettestsession']);

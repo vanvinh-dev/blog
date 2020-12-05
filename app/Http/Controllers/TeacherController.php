@@ -7,6 +7,7 @@ use App\Models\Teacher;
 use App\Models\member;
 use App\Models\subject;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class TeacherController extends Controller
 {
@@ -20,11 +21,7 @@ class TeacherController extends Controller
          $member = member::where('chucvu','gv')->get();
          return view('teacher')->with('teacher',$member);
     }
-    public function gettestsession(Request $re)
-    {
-        $value = $request->session()->get('key');
-       dd($value);
-    }
+    
     public function login()
     {
 
@@ -37,11 +34,15 @@ class TeacherController extends Controller
     }
      public function postlogin(Request $re)
     {
+
         $matchThese = ['email' => $re->input('email'), 'password' => $re->input('password')];
         $results = member::where($matchThese)->get();
         if(count($results)>0){
+             $re->session()->put('user',$results);
             if($results[0]['chucvu']=='gv'){
+                
                         return redirect('/themlich');
+                        
                     }else{
                         return redirect('/');
                     }

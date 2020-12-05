@@ -18,13 +18,13 @@ class CreateSchedulesTable extends Migration
             $table->String('mamh');
             $table->String('lophoc');
             $table->String('bachoc');
-            $table->integer('syso');
             $table->String('diadiem');
-             $table->bigInteger('mabomon');
-             $table->integer('type');
-             $table->String('timestart');
-              $table->String('timend');
-              $table->String('date');
+            $table->bigInteger('mabomon');
+            $table->integer('type');
+            $table->String('timestart');
+            $table->String('timend');
+            $table->String('date');
+            $table->bigInteger('idgv');
             $table->timestamps();
         });
     }

@@ -28,9 +28,15 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="/qlmonhoc" >
+        <a class="nav-link" href="/themlich" >
           <i class="fas fa-fw fa-cog"></i>
           <span>Thêm lịch dạy</span>
+        </a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="/xemlich" >
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Xem lịch dạy</span>
         </a>
       </li>
 

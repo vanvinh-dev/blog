@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Auth;
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -7,6 +7,7 @@ use App\Models\subject1;
 use App\Models\lop;
 use App\Models\schedule;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class scheduleController extends Controller
 {
@@ -14,6 +15,15 @@ class scheduleController extends Controller
     public function index()
     {
         return view('xemlichday');
+    }
+    public function view()
+    {
+        if(! session('user')){
+        return redirect('/login');
+        }else{
+            $session = session('user')[0]['id'];
+            return view('xemlich');
+        }
     }
     public function index1()
     {
@@ -44,13 +54,9 @@ class scheduleController extends Controller
        $request->session()->put('key', 'value');
        
     }
-    public function gettestsession(Request $request)
+    public function gettestsession()
     {
-        
-      $value = session('key');
-      $value = session('key', 'vinh');
-       echo $value;
-       dd($value);
-       
+        $user = Auth::user();
+        dd($user);
     }
 }
