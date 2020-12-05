@@ -22,7 +22,8 @@ class scheduleController extends Controller
         return redirect('/login');
         }else{
             $session = session('user')[0]['id'];
-            return view('xemlich');
+            $chedule = schedule::where('idgv',$session)->where('status', 'active')->get();
+            return view('xemlich')->with('chedule',$chedule);
         }
     }
     public function index1()

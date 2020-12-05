@@ -25,6 +25,7 @@ class CreateSchedulesTable extends Migration
             $table->String('timend');
             $table->String('date');
             $table->bigInteger('idgv');
+             $table->String('status');
             $table->timestamps();
         });
     }

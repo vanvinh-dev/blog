@@ -459,7 +459,8 @@ thead tr:nth-child(3) th {
                 diadiem:diadiem,
                 // syso:syso,
                 mamh:mamh,
-                idgv:Number(idgv.value)
+                idgv:Number(idgv.value),
+                status:'pending'
             }
             arr.push(obj)
         }
