@@ -60,7 +60,7 @@
                         <td>{{$item['bachoc']}}</td>
                         <td>{{$item['heso']}}</td>
                         <td>{{$item['phucap']}}</td>
-                        <td>{{$item['chucvu']}}</td>
+                        <td>Giáo viên</td>
                            <td><?php echo App\Models\subject::find($item['mabomon'])->name ?></td>
                         <td style="text-align: center;">
                          <a href="/suagv/{{$item['id']}}"><i class="fa fa-edit" style="margin-right:10px"></i></a>

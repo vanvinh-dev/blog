@@ -15,12 +15,12 @@ class CreateSubject1sTable extends Migration
     {
         Schema::create('subject1s', function (Blueprint $table) {
             $table->id();
-            // $table->String('mamh');
-            // $table->String('name');
-            // $table->String('chungchi');
-            // $table->integer('tinchi');
-            // $table->integer('sotiethoc');
-            // $table->integer('mabomon');
+            $table->String('mamh');
+            $table->String('name');
+            $table->integer('chungchi');
+            $table->integer('tinchi');
+            $table->integer('sotiethoc');
+            $table->bigInteger('mabomon');
             $table->timestamps();
         });
     }
