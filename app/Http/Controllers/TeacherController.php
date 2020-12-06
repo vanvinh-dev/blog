@@ -40,11 +40,9 @@ class TeacherController extends Controller
         if(count($results)>0){
              $re->session()->put('user',$results);
             if($results[0]['chucvu']=='gv'){
-                
-                        return redirect('/themlich');
-                        
-                    }else{
-                        return redirect('/');
+                return redirect('/themlich');        
+            }else if($results[0]['chucvu']=='tbm'){
+                        return redirect('/confirmSchedule');
                     }
         }else{
             echo 'Tài khoản bạn nhập không chính xác';

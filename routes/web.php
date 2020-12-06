@@ -7,6 +7,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\subjectController;
 use App\Http\Controllers\subject1Controller;
 use App\Http\Controllers\scheduleController;
+use App\Http\Controllers\xacnhanlichController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,3 +59,5 @@ Route::get('/getmonhoc', [scheduleController::class, 'getmonhoc']);
 Route::get('/getlophoc', [scheduleController::class, 'getlophoc']);
 Route::post('/saveSchedule', [scheduleController::class, 'saveSchedule']);
 Route::get('/viewSchedule', [scheduleController::class, 'viewSchedule']);
+
+Route::get('/confirmSchedule', [xacnhanlichController::class, 'index']);
