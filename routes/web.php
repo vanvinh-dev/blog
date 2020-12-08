@@ -66,5 +66,6 @@ Route::get('/editSchedule/{id}', [xacnhanlichController::class, 'editSchedule'])
 
 Route::get('/convan', [CongvanController::class, 'index']);
 
-Route::post('/saveconvan', [CongvanController::class, 'saveconvan'])->name('uploadfile');
-
+Route::post('/saveconvan', [CongvanController::class, 'saveconvan']);
+Route::get('/getdataCongvan', [CongvanController::class, 'getdataCongvan']);
+Route::post('/chiase/{id}', [CongvanController::class, 'saveconvan']);

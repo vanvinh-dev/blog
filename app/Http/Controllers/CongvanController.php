@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\congvan;
 use Illuminate\Http\Request;
 
 class CongvanController extends Controller
@@ -13,14 +13,25 @@ class CongvanController extends Controller
      */
     public function index()
     {
-        return view('congvan');
+        $congvans  = congvan::all()->toArray();
+        return view('congvan')->with('congvan',$congvans );
+    }
+     public function getdataCongvan()
+    {
+          $congvans = congvan::all();
+        echo (string)$congvans;
     }
 
-    public function saveconvan(Request $re)
+    public function saveconvan(Request $request)
     {
 
-        dd($re->file('uploadfile'));
-        $re->file->store('public');
+       $file = $request->filesTest;
+       $file->move('upload', $file->getClientOriginalName());
+       $congvans  = new congvan();
+       $congvans->file = $file->getClientOriginalName();
+       $congvans->Mota = $request->des;
+       $congvans->save();
+       return redirect('/convan');
         
     }
 
