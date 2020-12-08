@@ -8,6 +8,7 @@ use App\Http\Controllers\subjectController;
 use App\Http\Controllers\subject1Controller;
 use App\Http\Controllers\scheduleController;
 use App\Http\Controllers\xacnhanlichController;
+use App\Http\Controllers\CongvanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,3 +62,9 @@ Route::post('/saveSchedule', [scheduleController::class, 'saveSchedule']);
 Route::get('/viewSchedule', [scheduleController::class, 'viewSchedule']);
 
 Route::get('/confirmSchedule', [xacnhanlichController::class, 'index']);
+Route::get('/editSchedule/{id}', [xacnhanlichController::class, 'editSchedule']);
+
+Route::get('/convan', [CongvanController::class, 'index']);
+
+Route::post('/saveconvan', [CongvanController::class, 'saveconvan'])->name('uploadfile');
+

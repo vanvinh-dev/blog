@@ -45,31 +45,24 @@
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Môn học</th>
-                  <th scope="col">Bộ môn</th>
                   <th scope="col">Lớp học</th>
                    <th scope="col">Bậc học</th>
                    <th scope="col">Địa điểm</th>
                    <th scope="col">Bắt đầu dạy</th>
                    <th scope="col">Kết thúc dạy</th>
-                    <th scope="col"></th>
+               
                 </tr>
               </thead>
               <tbody>
               <?php $stt=0; foreach($chedule as $item): $stt++?>
-                    
                     <tr>
                         <th scope="row">{{$stt}}</th>
                         <td><?php echo App\Models\subject1::find($item['mabomon'])->name ?></td>
-                        <td><?php echo App\Models\subject::find($item['mabomon'])->name ?></td>
                         <td><?php echo App\Models\lop::find($item['lophoc'])->tenlop ?></td>
                         <td>{{$item['bachoc']}}</td>
                          <td>{{$item['diadiem']}}</td>
                            <td>{{$item['timestart']}}</td>
                            <td>{{$item['timend']}}</td>
-                        
-                        <td style="text-align: center;">
-                        <a href="/suamons/{{$item['id']}}"><i class="fa fa-edit" style="margin-right:10px"></i></a>
-                         <a href="/xoamons/{{$item['id']}}"><i class="fa fa-trash-alt" style="    color: #de3d0b;"></i></a></td>
                     </tr>
                     <tr>
                     

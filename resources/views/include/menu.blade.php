@@ -22,21 +22,18 @@
       <hr class="sidebar-divider">
 
       <!-- Heading -->
-      <div class="sidebar-heading">
-        Interface
-      </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link" href="/qlmonhoc" >
-          <i class="fas fa-fw fa-cog"></i>
+          <i class="fas fa-atlas"></i>
           <span>Quản lý bộ môn</span>
         </a>
       </li>
        <li class="nav-item">
         <a class="nav-link" href="/qlmonhocs" >
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Quản môn học</span>
+          <i class="fas fa-atlas"></i>
+          <span>Quản lý môn học</span>
         </a>
       </li>
 
@@ -49,8 +46,14 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/member">
-          <i class="fas fa-fw fa-wrench"></i>
+          <i class="fas fa-users"></i>
           <span>Quản lý giáo viên</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/convan">
+          <i class="fas fa-align-left "></i>
+          <span>Quản lý Công văn</span>
         </a>
       </li>
       <!-- Divider -->

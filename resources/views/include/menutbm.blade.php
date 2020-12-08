@@ -28,7 +28,7 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="/themlich" >
+        <a class="nav-link" href="/confirmSchedule" >
           <i class="fas fa-fw fa-cog"></i>
           <span>Xác nhận lịch dạy</span>
         </a>

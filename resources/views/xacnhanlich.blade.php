@@ -34,7 +34,47 @@
         
         <!-- Topbar -->
         @include('include.header')
-        <!-- End of Topbar -->
+          <div id='wrap'>
+             <div style="padding:20px">
+            <div style="">
+            </div>
+            <table id="tables" class="table  table table-bordered" style="    background-color: white;">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Môn học</th>
+                  <th scope="col">Tên giáo viên</th>
+                  <th scope="col">Lớp học</th>
+                   <th scope="col">Bậc học</th>
+                   <th scope="col">Địa điểm</th>
+                   <th scope="col">Bắt đầu dạy</th>
+                   <th scope="col">Kết thúc dạy</th>
+                    <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+              <?php $stt=0; foreach($chedule as $item): $stt++?>
+                    <tr>
+                        <th scope="row">{{$stt}}</th>
+                        <td><?php echo App\Models\subject1::find($item['mabomon'])->name ?></td>
+                         <td><?php echo App\Models\member::find($item['idgv'])->ten ?></td>
+                        <td><?php echo App\Models\lop::find($item['lophoc'])->tenlop ?></td>
+                        <td>{{$item['bachoc']}}</td>
+                         <td>{{$item['diadiem']}}</td>
+                           <td>{{$item['timestart']}}</td>
+                           <td>{{$item['timend']}}</td>
+                        
+                        <td style="text-align: center;">
+                        <a href="/editSchedule/{{$item['id']}}"><i class="fa fa-check-square" style="margin-right:10px;color: #37a53b;"></i></a>
+                         <a href="/xoamons/{{$item['id']}}"><i class="fa fa-trash-alt" style="    color: #de3d0b;"></i></a></td>
+                    </tr>
+                    <tr>
+                    
+                <?php endforeach ?>
+              </tbody>
+            </table>
+        </div>
+      </div>
     
   </div>
       <!-- Footer -->
