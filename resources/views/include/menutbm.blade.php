@@ -33,6 +33,12 @@
           <span>Xác nhận lịch dạy</span>
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/qlcongvan" >
+          <i class="fas fa-file-word"></i>
+          <span>Công văn</span>
+        </a>
+      </li>
 
 
       <!-- Divider -->

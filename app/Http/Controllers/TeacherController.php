@@ -21,6 +21,11 @@ class TeacherController extends Controller
          $member = member::where('chucvu','gv')->get();
          return view('teacher')->with('teacher',$member);
     }
+    public function getDataGv()
+    {
+         $member = member::where('chucvu','gv')->get();
+         echo $member;
+    }
     
     public function login()
     {

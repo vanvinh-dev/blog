@@ -25,6 +25,12 @@ class subjectController extends Controller
         return view('themmon')->with('khoa',$khoa );
     }
 
+    public function getdatabomon()
+    {
+          $subject = subject::all();
+        echo (string)$subject;
+    }
+
      public function suamon($id)
     {   
         $subject = subject::find($id);

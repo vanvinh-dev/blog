@@ -9,6 +9,7 @@ use App\Http\Controllers\subject1Controller;
 use App\Http\Controllers\scheduleController;
 use App\Http\Controllers\xacnhanlichController;
 use App\Http\Controllers\CongvanController;
+use App\Http\Controllers\congvanguiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,6 +66,10 @@ Route::get('/confirmSchedule', [xacnhanlichController::class, 'index']);
 Route::get('/editSchedule/{id}', [xacnhanlichController::class, 'editSchedule']);
 
 Route::get('/convan', [CongvanController::class, 'index']);
+Route::get('/getdatabomon', [subjectController::class, 'getdatabomon']);
+Route::get('/getDataGv', [TeacherController::class, 'getDataGv']);
+Route::post('/guicongvan', [congvanguiController::class, 'create']);
+Route::get('/qlcongvan', [congvanguiController::class, 'index']);
 
 Route::post('/saveconvan', [CongvanController::class, 'saveconvan']);
 Route::get('/getdataCongvan', [CongvanController::class, 'getdataCongvan']);

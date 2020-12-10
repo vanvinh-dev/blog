@@ -4,5 +4,5 @@
   <script src="{{ asset("js/sb-admin-2.min.js")}}"></script>
   <!-- <script src="{{ asset("vendor/chart.js/Chart.min.js")}}"></script> -->
   <!-- <script src="{{ asset("js/demo/chart-pie-demo.js")}}"></script> -->
-   <script src="{{ asset("datatables.min.js")}}"></script>
+    <script src="{{ asset("select2.min.js")}}"></script>
 >

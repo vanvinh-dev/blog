@@ -8,6 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+ 
 <style>
     /*
 *
@@ -51,6 +53,108 @@
     position: relative;
 }
 
+body {
+    background: #eee
+}
+
+.form-control {
+    border-radius: 0;
+    box-shadow: none;
+    border-color: #d2d6de
+}
+
+.select2-hidden-accessible {
+    border: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
+}
+
+.select2-container--default .select2-selection--single,
+.select2-selection .select2-selection--single {
+    border: 1px solid #d2d6de;
+    border-radius: 0;
+    padding: 6px 12px;
+    height: 34px
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice{
+      background-color: #2196f3!important;
+      color:white
+}
+
+.select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border: 1px solid #aaa;
+    border-radius: 4px
+}
+
+.select2-container .select2-selection--single {
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    height: 28px;
+    user-select: none;
+    -webkit-user-select: none
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+    padding-right: 10px
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+    padding-left: 0;
+    padding-right: 0;
+    height: auto;
+    margin-top: -3px
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #444;
+    line-height: 28px
+}
+
+.select2-container--default .select2-selection--single,
+.select2-selection .select2-selection--single {
+    border: 1px solid #d2d6de;
+    border-radius: 0 !important;
+    padding: 6px 12px;
+    height: 40px !important
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 26px;
+    position: absolute;
+    top: 6px !important;
+    right: 1px;
+    width: 20px
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove{
+  border-right:none!important;
+  color:white!important
+}
 /*
 *
 * ==========================================
@@ -59,6 +163,8 @@
 *
 */
 body {
+  padding:0px!important;
+  margin:0px!important;
     min-height: 100vh;
     background-color: #757f9a;
     background-image: linear-gradient(147deg, #757f9a 0%, #d7dde8 100%);
@@ -124,6 +230,23 @@ body {
       </div>
       </div>
       </div>
+       <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="login.html">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
@@ -144,29 +267,54 @@ body {
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
+ 
+  
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Chuyển công văn đến bộ môn</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="row">
+           <div class="col-md-12">
+            <div class="form-group"> <label>Gửi đến bộ môn</label> <select class="form-control select2 select2-hidden-accessible" multiple=""  style="width: 100%;" tabindex="-1" aria-hidden="true" id="bomon">
+                   
+                </select> 
+                </div> 
+               <div class="form-group"> <label>Gửi đến giáo viên</label> <select class="form-control select2 select2-hidden-accessible" multiple=""  style="width: 100%;" tabindex="-1" aria-hidden="true" id="giaovien">
+                   
+                </select> 
+                </div> 
+       
+    
+          </div>
+      </div>
+      <div class="modal-footer" id="footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        <button type="button" class="btn btn-primary" onclick="guicongvan()">Chia sẻ</button>
       </div>
     </div>
   </div>
+</div>
   <!-- Page level custom scripts -->
   @include('include.script')
+
 <script>
 /*  ==========================================
     SHOW UPLOADED IMAGE
 * ========================================== */
+
+$(document).ready(function() {
+$('.select2').select2({
+closeOnSelect: false
+});
+});
 function readURL(input) {
   let doc = ['.docx', '.DOCX', '.doc', '.DOC']
 let excel = ['.xls', '.XLS', '.xlsx', 'XLSX']
@@ -191,10 +339,11 @@ let excel = ['.xls', '.XLS', '.xlsx', 'XLSX']
         reader.readAsDataURL(input.files[0]);
     }
 }
-
+  let currentId
 $(function () {
+  loadBomonAndGiaovien()
     let doc = ['.docx', '.DOCX', '.doc', '.DOC']
-let excel = ['.xls', '.XLS', '.xlsx', 'XLSX']
+    let excel = ['.xls', '.XLS', '.xlsx', 'XLSX']
     $('#upload').on('change', function () {
         readURL(input);
     });
@@ -204,7 +353,6 @@ let excel = ['.xls', '.XLS', '.xlsx', 'XLSX']
                 type:'GET',
                 success:function(data){
                     let congvan = JSON.parse(data)
-                    console.log(congvan)
                     for (let i = 0; i < congvan.length; i++) {
                         let teamplate 
                         if (hasExtension(congvan[i].file,excel)) {
@@ -215,22 +363,96 @@ let excel = ['.xls', '.XLS', '.xlsx', 'XLSX']
                            teamplate = `<a href=""> <img src="/upload/${congvan[i].file}" style="border-radius: 10px;max-height: 106px;"> </a>`
                         }
                         document.getElementById('tbody').innerHTML +=`
-                          <tr>
+                        <tr>
                         <th scope="row">${i+1}</th>
                         <td>${teamplate}</td>
                         <td>${congvan[i].Mota}</td>
                         <td>
-                        <a href="/chiase/${congvan[i].id}"><i class="fa fa-share" style="margin-right:10px"></i></a>
-                         <a href="/xoacv
-                         
-                         /${congvan[i].id}"><i class="fa fa-trash-alt" style="    color: #de3d0b;"></i></a></td>
-                    </tr>
+                        <a data-toggle="modal" data-target="#exampleModal" onclick="clickcurrent(${congvan[i].id})"><i class="fa fa-share" style="margin-right:10px"></i></a>
+                         <a href="/xoacv/${congvan[i].id}"><i class="fa fa-trash-alt" style="    color: #de3d0b;"></i></a></td>
+                         </tr>
                         `
                     }
                 }
       })
-});
+  });
+function clickcurrent(id){
+  currentId = id
+}
+function loadBomonAndGiaovien(){
+   $.ajax({
+            url:'/getdatabomon',
+            type:'GET',
+            success:function(data){
+                    let bomon = JSON.parse(data)
+                    let select
+                    for (let i = 0; i < bomon.length; i++) {
+                      select += `<option value="${bomon[i].id}">${bomon[i].name}</option>`
+                    }
+                     $('#bomon').append(select)
+                }
+      })
 
+     $.ajax({
+            url:'/getDataGv',
+            type:'GET',
+            success:function(data){
+                    let gv = JSON.parse(data)
+                    let select
+                    for (let i = 0; i < gv.length; i++) {
+                      select += `<option value="${gv[i].id}">${gv[i].ten}</option>`
+                    }
+                     $('#giaovien').append(select)
+                }
+      })
+}
+function guicongvan(){
+          let monhoc  =  $('#bomon option:selected')
+                .toArray().map(item => item.value);
+          let giaovien  = $('#giaovien option:selected')
+                .toArray().map(item => item.value);
+          let obj 
+          let arr = []
+          if(giaovien.length > 0){
+            monhoc.forEach((item)=>{
+              if(giaovien.length>0){
+                 giaovien.forEach((e)=>{
+                  obj = {
+                          idconvan:currentId,
+                          bomon:item,
+                          giaovien:e
+                        }
+                    arr.push(obj)
+                 })
+               
+
+              }else{
+                 obj = {
+                          idconvan:currentId,
+                          bomon:item,
+                      }
+                       arr.push(obj)
+              }
+            })
+            
+          }
+          
+          console.log(arr,435)
+          $.ajax({
+            type: 'post',
+             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url: '/guicongvan',
+         
+            data: {
+                data:arr
+            },
+            success: function (ret) {
+              if(ret){
+                  alert('Thêm dữ liệu thành công')
+              }
+            }
+          });
+}
 function hasExtension(fileName, exts) {
   return (new RegExp('(' + exts.join('|').replace(/\./g, '\\.') + ')$')).test(fileName);
 }
