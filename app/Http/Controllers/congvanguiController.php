@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\congvangui;
 use App\Models\member;
+use App\Models\congvan;
+use Illuminate\Support\Facades\DB;
 
 class congvanguiController extends Controller
 {
@@ -18,11 +20,22 @@ class congvanguiController extends Controller
         if(! session('user')){
         return redirect('/login');
         }else{
+            return view('qlcongvan');
+        }
+           
+        //  return view('qlcongvan')->with('teacher',$congvangui);
+    }
+
+    public function getcongvanBySession()
+    {
+        if(! session('user')){
+        return redirect('/login');
+        }else{
             $session = session('user')[0]['id'];
             $member = member::where('id',$session)->get();
-        
-            $congvangui = congvangui::where('bomon',$member[0]['mabomon'])->get();
-            return view('qlcongvan')->with('congvangui',$congvangui);
+            $congvangui =   congvangui::where('bomon',$member[0]['mabomon'])->pluck('idconvan');
+            $congvan = congvan::whereIn('id',$congvangui)->get();
+            echo $congvan;
         }
            
         //  return view('qlcongvan')->with('teacher',$congvangui);

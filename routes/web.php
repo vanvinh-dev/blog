@@ -70,6 +70,7 @@ Route::get('/getdatabomon', [subjectController::class, 'getdatabomon']);
 Route::get('/getDataGv', [TeacherController::class, 'getDataGv']);
 Route::post('/guicongvan', [congvanguiController::class, 'create']);
 Route::get('/qlcongvan', [congvanguiController::class, 'index']);
+Route::get('/getcongvanBySession', [congvanguiController::class, 'getcongvanBySession']);
 
 Route::post('/saveconvan', [CongvanController::class, 'saveconvan']);
 Route::get('/getdataCongvan', [CongvanController::class, 'getdataCongvan']);
