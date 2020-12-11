@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\congvangui;
+use App\Models\member;
 
 class congvanguiController extends Controller
 {
@@ -14,10 +15,16 @@ class congvanguiController extends Controller
      */
     public function index()
     {
+        if(! session('user')){
+        return redirect('/login');
+        }else{
             $session = session('user')[0]['id'];
-            $congvangui = congvangui::where('id',$session)->get();
-            
-            dd(var_dump($congvangui));
+            $member = member::where('id',$session)->get();
+            echo $member[0]['mabomon'];
+            $congvangui = congvangui::where('bomon',$member[0]['mabomon'])->get();
+            echo (var_dump($congvangui));
+        }
+           
         //  return view('qlcongvan')->with('teacher',$congvangui);
     }
 
