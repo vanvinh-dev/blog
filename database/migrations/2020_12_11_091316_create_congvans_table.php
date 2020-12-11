@@ -17,6 +17,11 @@ class CreateCongvansTable extends Migration
             $table->id();
             $table->String('file');
             $table->String('Mota');
+            $table->String('loaivb');
+            $table->String('linhvuc');
+            $table->String('ngaybanh');
+            $table->String('ngayhieuluc');
+            $table->String('status');
             $table->timestamps();
         });
     }

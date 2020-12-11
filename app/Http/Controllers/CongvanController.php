@@ -30,6 +30,11 @@ class CongvanController extends Controller
        $congvans  = new congvan();
        $congvans->file = $file->getClientOriginalName();
        $congvans->Mota = $request->des;
+       $congvans->loaivb = $request->loaivb;
+       $congvans->linhvuc = $request->linhvuc;
+       $congvans->ngaybanh = $request->ngaybanh;
+       $congvans->ngayhieuluc = $request->ngayhieuluc;
+       $congvans->status = 'active';
        $congvans->save();
        return redirect('/convan');
         

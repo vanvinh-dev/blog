@@ -20,9 +20,9 @@ class congvanguiController extends Controller
         }else{
             $session = session('user')[0]['id'];
             $member = member::where('id',$session)->get();
-            echo $member[0]['mabomon'];
+        
             $congvangui = congvangui::where('bomon',$member[0]['mabomon'])->get();
-            echo (var_dump($congvangui));
+            return view('qlcongvan')->with('congvangui',$congvangui);
         }
            
         //  return view('qlcongvan')->with('teacher',$congvangui);

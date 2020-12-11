@@ -9,6 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="{{ asset("css/bootstrap-datepicker.css")}}" rel="stylesheet" type="text/css">
  
 <style>
     /*
@@ -169,6 +170,85 @@ body {
     background-color: #757f9a;
     background-image: linear-gradient(147deg, #757f9a 0%, #d7dde8 100%);
 }
+.datepicker {
+    background-color: #fff;
+    border: none;
+    padding:10px 20px 10px 20px!important;
+}
+
+.datepicker-dropdown {
+    top: 0;
+    left: 0
+}
+
+.datepicker table tr td.today,
+span.focused {
+    border-radius: 50% !important
+}
+
+thead tr:nth-child(2) {
+    background-color: #3f51b5 !important
+}
+
+thead tr:nth-child(3) th {
+    color: #3f51b5 !important;
+    padding-top: 20px;
+    padding-bottom: 10px
+}
+
+.dow,
+.old-day,
+.day,
+.new-day {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 0px !important
+}
+
+.old-day:hover,
+.day:hover,
+.new-day:hover,
+.month:hover,
+.year:hover,
+.decade:hover,
+.century:hover {
+    border-radius: 50% !important;
+    background-color: #eee
+}
+
+.active {
+    border-radius: 50% !important;
+
+}
+
+.prev,
+.next,
+.datepicker-switch {
+    border-radius: 0 !important;
+    padding: 20px 10px !important;
+    text-transform: uppercase;
+    font-size: 20px;
+    color: #fff;
+    opacity: 0.8
+}
+
+.prev:hover,
+.next:hover,
+.datepicker-switch:hover {
+    background-color: inherit !important;
+    opacity: 1
+}
+#select-type{
+        padding: 10px 20px 10px 20px!important;
+    border: 1px solid lightgrey !important;
+    border-radius: 6px !important;
+    box-sizing: border-box!important;
+    background-color: #fff !important;
+    color: #2C3E50!important;
+    font-size: 14px!important;
+    letter-spacing: 1px!important;
+}
+
 </style>
   <title></title>
   @include('include.css')
@@ -183,7 +263,7 @@ body {
       <div id="content">
         @include('include.header')
         
-        <div class="row" style="padding: 33px">
+        <div class="row" style="padding: 33px;padding-top: 0px;">
         <div class="col-md-5">
             <form action="/saveconvan" method="POST" enctype="multipart/form-data" class="row py-4" style="background-color: #4b70dd;    border-radius: 11px;">
           {{ csrf_field() }}
@@ -200,10 +280,28 @@ body {
                             </div>
                         </div>
                         </div>
-                        <div class="form-group col-md-12 " style="padding: 8px 24px;margin-top: 19px;">
+                        <div class="form-group col-md-12 " style="padding: 2px 24px;margin-top: 10px;">
                             <label for="exampleInputEmail1" style="color:white">Mô tả</label>
                             <textarea  class="form-control" type="text" placeholder="Nhập công văn" name="des" value=""></textarea>
                         </div>
+                        <div class="form-group col-md-6 " style="padding: 2px 24px;">
+                            <label for="exampleInputEmail1" style="color:white">Loại văn bản</label>
+                            <input  class="form-control" type="text" placeholder="Nhập loại văn bản" name="loaivb" value="">
+                        </div>
+                         <div class="form-group col-md-6 " style="padding: 2px 24px;">
+                            <label for="exampleInputEmail1" style="color:white">Lĩnh vực</label>
+                            <input  class="form-control" type="text" placeholder="Nhập lĩnh vực" name="linhvuc" value="">
+                        </div>
+                         <div class="form-group col-md-6 " style="padding: 2px 24px;">
+                            <label for="exampleInputEmail1" style="color:white">Ngày ban hành</label>
+                            <input  type="text" id="dp1" class="datepicker mr-5 form-controll" placeholder="Chọn ngày ban hành" name="ngaybanh" style="width: 100%;">
+                        </div>
+                         <div class="form-group col-md-6 " style="padding: 2px 24px;">
+                            <label for="exampleInputEmail1" style="color:white">Thời gian hiệu lực</label>
+                            <input  type="text" id="dp1" class="datepicker mr-5 form-controll" placeholder="Chọn ngày ban hành" name="ngayhieuluc" style="width: 100%;">
+                        </div>
+                      
+                    
                         <div class="col-md-12" style="padding: 8px 24px;">
                             <button  class="btn btn-success" type="submit">Thêm</button>
                         </div>
@@ -216,6 +314,9 @@ body {
                   <th scope="col">#</th>
                   <th scope="col">Công văn</th>
                   <th scope="col">Mô tả</th>
+                  <th scope="col">Loại văn bản</th>
+                  <th scope="col">Lĩnh vực</th>
+                  <th scope="col">Ngày ban hành</th>
                   <th scope="col"></th>
                 </tr>
               </thead>
@@ -228,6 +329,13 @@ body {
         </div>
         
       </div>
+<footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2020</span>
+          </div>
+        </div>
+      </footer>
       </div>
       </div>
        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -247,13 +355,7 @@ body {
       </div>
     </div>
   </div>
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2020</span>
-          </div>
-        </div>
-      </footer>
+      
       <!-- End of Footer -->
 
     </div>
@@ -304,7 +406,7 @@ body {
 </div>
   <!-- Page level custom scripts -->
   @include('include.script')
-
+ <script src="{{ asset('bootstrap-datepicker.js')}}"></script>
 <script>
 /*  ==========================================
     SHOW UPLOADED IMAGE
@@ -341,6 +443,11 @@ let excel = ['.xls', '.XLS', '.xlsx', 'XLSX']
 }
   let currentId
 $(function () {
+  $('.datepicker').datepicker({
+    format: 'dd-mm-yyyy',
+    todayHighlight: true,
+    toggleActive: true,
+    });
   loadBomonAndGiaovien()
     let doc = ['.docx', '.DOCX', '.doc', '.DOC']
     let excel = ['.xls', '.XLS', '.xlsx', 'XLSX']
@@ -367,6 +474,9 @@ $(function () {
                         <th scope="row">${i+1}</th>
                         <td>${teamplate}</td>
                         <td>${congvan[i].Mota}</td>
+                        <td>${congvan[i].loaivb}</td>
+                        <td>${congvan[i].linhvuc}</td>
+                        <td>${congvan[i].ngaybanh}</td>
                         <td>
                         <a data-toggle="modal" data-target="#exampleModal" onclick="clickcurrent(${congvan[i].id})"><i class="fa fa-share" style="margin-right:10px"></i></a>
                          <a href="/xoacv/${congvan[i].id}"><i class="fa fa-trash-alt" style="    color: #de3d0b;"></i></a></td>
@@ -448,7 +558,8 @@ function guicongvan(){
             },
             success: function (ret) {
               if(ret){
-                  alert('Thêm dữ liệu thành công')
+                  $('#exampleModal').modal('toggle');
+                  alert('Công văn đã được chuyển đi!')
               }
             }
           });
