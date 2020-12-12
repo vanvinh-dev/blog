@@ -56,23 +56,33 @@
             </table>
         </div>
       </div>
-      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Chuyển công văn đến bộ môn</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="row">
+           <div class="col-md-12">
+               <div class="form-group"> <label>Gửi đến giáo viên</label> <select class="form-control select2 select2-hidden-accessible" multiple=""  style="width: 100%;" tabindex="-1" aria-hidden="true" id="giaovien">
+                   
+                </select> 
+                </div> 
+       
+    
+          </div>
+      </div>
+      <div class="modal-footer" id="footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        <button type="button" class="btn btn-primary" onclick="guicongvan()">Chia sẻ</button>
       </div>
     </div>
   </div>
+</div>
   </div>
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
@@ -100,6 +110,11 @@
   <!-- Page level custom scripts -->
   @include('include.script')
   <script>
+  $(document).ready(function() {
+    $('.select2').select2({
+    closeOnSelect: false
+    });
+    });
    let doc = ['.docx', '.DOCX', '.doc', '.DOC']
     let excel = ['.xls', '.XLS', '.xlsx', 'XLSX']
         document.getElementById('tbody').innerHTML = ''
@@ -133,7 +148,18 @@
                     }
                 }
       })
-
+ $.ajax({
+            url:'/getDataGv',
+            type:'GET',
+            success:function(data){
+                    let gv = JSON.parse(data)
+                    let select
+                    for (let i = 0; i < gv.length; i++) {
+                      select += `<option value="${gv[i].id}">${gv[i].ten}</option>`
+                    }
+                     $('#giaovien').append(select)
+                }
+      })
       function hasExtension(fileName, exts) {
             return (new RegExp('(' + exts.join('|').replace(/\./g, '\\.') + ')$')).test(fileName);
             }

@@ -38,7 +38,7 @@
       <div id='wrap'>
              <div style="padding:20px">
             <div style="">
-              <a class="btn btn-info btn-sm" style="float:right;margin-bottom:15px" href="/themmons">Thêm lịch dạy</a>
+              <a class="btn btn-info btn-sm" style="float:right;margin-bottom:15px" href="/themlich">Thêm lịch dạy</a>
             </div>
             <table class="table  table table-bordered" style="    background-color: white;">
               <thead>
