@@ -3,7 +3,7 @@
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+          <i class="fa fa-blog"></i>
         </div>
         <div class="sidebar-brand-text mx-3">VV Admin <sup></sup></div>
       </a>
@@ -22,7 +22,13 @@
       <hr class="sidebar-divider">
 
       <!-- Heading -->
-
+      <!-- Nav Item - Utilities Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link" href="/khoa">
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>Quản lý khoa</span>
+        </a>
+      </li>
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link" href="/qlmonhoc" >
@@ -37,13 +43,7 @@
         </a>
       </li>
 
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link" href="/khoa">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Quản lý khoa</span>
-        </a>
-      </li>
+    
       <li class="nav-item">
         <a class="nav-link" href="/member">
           <i class="fas fa-users"></i>

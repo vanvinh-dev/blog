@@ -48,7 +48,9 @@ class TeacherController extends Controller
                 return redirect('/themlich');        
             }else if($results[0]['chucvu']=='tbm'){
                         return redirect('/confirmSchedule');
-                    }
+            }else{
+                return redirect('/');
+            }
         }else{
             echo 'Tài khoản bạn nhập không chính xác';
         }
